@@ -1,95 +1,112 @@
-# UniEvents Server Side
 
-## Expected Features
-- **User Authentication**: User registration, login, logout, and password reset.
+# Authentication APIs with dj-rest-auth
 
-- **Event Management**: creating, editing, and deleting events, along with visibility settings.
+This Django application provides authentication endpoints using dj-rest-auth. Follow the steps below to set up and use these APIs.
 
-- **Event Registration**: events registration, registration status tracking, and managing event capacities.
 
-- **Email Notifications**: Implement automated email notifications for event-related updates and reminders.
+## Run Locally
 
-- **Feedback and Rating System**: For users to provide feedback and ratings on events.
+Clone the project
 
-- **Admin Panel**: Panel for managing users, events, and system settings.
+```bash
+  git clone https://github.com/francis450/UniEvents.git
+```
 
-- **Reporting and Analytics**: Implement event attendance tracking and user engagement analytics.
+Go to the project directory
 
-- **API Development**: Build RESTful APIs for frontend integration and external system interaction.
+```bash
+  cd UniEvents
+  cd server
 
-## Getting Started
+```
 
-### Prerequsites
+Create and Activate a Virtual Environment
 
-- 
--
+```bash
+  python -m venv venv
+  source venv/bin/activate
+```
 
-### Installation
-1. **Clone the repository** from the main branch.
-    ```bash
-    git clone https://github.com/francis450/UniEvents.git
-    ```
-2. Navigate to the project directory:
+Install Dependencies:
 
-    ```bash
-    cd UniEvents/server
-    ```
-3. To be continued....
+```bash
+  pip install -r requirements.txt
+```
 
-### Usage
-1. To be determined....
+Run Migrations:
 
-## API DOCUMENTATION
-Document the UniEvents APIs by describing the endpoints and providing examples of usage in `API.md` file in the server folder. Below are sample requests:
-### GET Requests
+```bash
+  python manage.py migrate
+```
 
-- Endpoint: `/api/events`
-- Description: Retrieves all events.
-- Example:
+Start the Development Server:
 
-    ```json
-    GET http://localhost:8000/api/events
-    ```
+```bash
+  python manage.py runserver
+```
 
-### POST Request
 
-- Endpoint: `/api/event`
-- Description: Creates a new event.
-- Example:
+## API Reference
 
-    ```json
-    POST http://localhost:5000/api/events
-    Content-Type: application/json
+#### Login
 
-    {
-        "title": "Data Science Conference-Kabarak University",
-        "description": "Event Description"
-    }
-    ```
+```http
+  POST /dj-rest-auth/login/
+```
 
-### PUT Request
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username (or email)` | `string` | **Required**. username or email |
+| `password`      | `string` | **Required**. Password |
 
-- Endpoint: `/api/event/{id}`
-- Description: Updates an existing event.
-- Example:
+##### Returns token key
 
-    ```json
-    PUT http://localhost:5000/api/event/1
-    Content-Type: application/json
+#### Logout
 
-    {
-        "title": "Updated Title",
-        "description": "Updated Description"
-    }
-    ```
-## Contributing
+```http
+  POST /dj-rest-auth/logout/
+```
 
-We welcome contributions to UniEvent! If you find any bugs or have suggestions for new features, please open an issue on GitHub or submit a pull request.
+#### Password Reset
 
-## License
+```http
+  POST /dj-rest-auth/password/reset/
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**. Email |
 
----
+#### Password Reset Confirmation
 
-👨‍💻 Happy Hosting with UniEvents! If you have any questions or need further assistance, feel free to reach out to us.
+```http
+  POST /dj-rest-auth/password/reset/confirm/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `uid`      | `string` | **Required**. UID |
+| `token`      | `string` | **Required**. Token |
+| `new_password1`      | `string` | **Required**. New Password |
+| `new_password2`      | `string` | **Required**. Confirm Password |
+
+##### Note: uid and token are sent in an email after calling  ``` /dj-rest-auth/password/reset/. ```
+
+
+#### User Registration
+
+```http
+  POST /dj-rest-auth/registration/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `username`      | `string` | **Required**. Username |
+| `email`      | `string` | **Required**. Email |
+| `password`      | `string` | **Required**. Password |
+
+
+## Documentation
+
+For more details, refer to the full documentation: [Documentation](https://dj-rest-auth.readthedocs.io/en/latest/index.html)
+
