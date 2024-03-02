@@ -36,60 +36,83 @@
     ```
 3. To be continued....
 
-### Usage
-1. To be determined....
+# Dj-Rest-Auth
+[![<iMerica>](https://circleci.com/gh/iMerica/dj-rest-auth.svg?style=svg)](https://app.circleci.com/pipelines/github/iMerica/dj-rest-auth)
 
-## API DOCUMENTATION
-Document the UniEvents APIs by describing the endpoints and providing examples of usage in `API.md` file in the server folder. Below are sample requests:
-### GET Requests
 
-- Endpoint: `/api/events`
-- Description: Retrieves all events.
-- Example:
+Drop-in API endpoints for handling authentication securely in Django Rest Framework. Works especially well 
+with SPAs (e.g., React, Vue, Angular), and Mobile applications. 
 
-    ```json
-    GET http://localhost:8000/api/events
-    ```
+## Requirements
+- Django 2, 3, or 4 (See Unit Test Coverage in CI)
+- Python 3
 
-### POST Request
+## Quick Setup
 
-- Endpoint: `/api/event`
-- Description: Creates a new event.
-- Example:
+Install package
 
-    ```json
-    POST http://localhost:5000/api/events
-    Content-Type: application/json
+    pip install dj-rest-auth
+    
+Add `dj_rest_auth` app to INSTALLED_APPS in your django settings.py:
 
-    {
-        "title": "Data Science Conference-Kabarak University",
-        "description": "Event Description"
-    }
-    ```
+```python
+INSTALLED_APPS = (
+    ...,
+    'rest_framework',
+    'rest_framework.authtoken',
+    ...,
+    'dj_rest_auth'
+)
+```
+    
+Add URL patterns
 
-### PUT Request
+```python
+urlpatterns = [
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+]
+```
+    
 
-- Endpoint: `/api/event/{id}`
-- Description: Updates an existing event.
-- Example:
+(Optional) Use Http-Only cookies
 
-    ```json
-    PUT http://localhost:5000/api/event/1
-    Content-Type: application/json
+```python
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'jwt-auth',
+}
+```
 
-    {
-        "title": "Updated Title",
-        "description": "Updated Description"
-    }
-    ```
-## Contributing
+### Testing
 
-We welcome contributions to UniEvent! If you find any bugs or have suggestions for new features, please open an issue on GitHub or submit a pull request.
+Install required modules with `pip install -r  dj_rest_auth/tests/requirements.pip`
 
-## License
+To run the tests within a virtualenv, run `python runtests.py` from the repository directory.
+The easiest way to run test coverage is with [`coverage`](https://pypi.org/project/coverage/),
+which runs the tests against all supported Django installs. To run the test coverage 
+within a virtualenv, run `coverage run ./runtests.py` from the repository directory then run `coverage report`.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+#### Tox
 
----
+Testing may also be done using [`tox`](https://pypi.org/project/tox/), which
+will run the tests against all supported combinations of Python and Django.
 
-👨‍💻 Happy Hosting with UniEvents! If you have any questions or need further assistance, feel free to reach out to us.
+Install tox, either globally or within a virtualenv, and then simply run `tox`
+from the repository directory. As there are many combinations, you may run them
+in [`parallel`](https://tox.readthedocs.io/en/latest/config.html#cmdoption-tox-p)
+using `tox --parallel`.
+
+The `tox.ini` includes an environment for testing code [`coverage`](https://pypi.org/project/coverage/)
+and you can run it and view this report with `tox -e coverage`.
+
+Linting may also be performed via [`flake8`](https://pypi.org/project/flake8/)
+by running `tox -e flake8`.
+
+### Documentation
+
+View the full documentation here: https://dj-rest-auth.readthedocs.io/en/latest/index.html
+
+
+### Acknowledgements
+
+This project began as a fork of `django-rest-auth`. Big thanks to everyone who contributed to that repo!
