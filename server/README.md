@@ -1,118 +1,112 @@
-# UniEvents Server Side
 
-## Expected Features
-- **User Authentication**: User registration, login, logout, and password reset.
+# Authentication APIs with dj-rest-auth
 
-- **Event Management**: creating, editing, and deleting events, along with visibility settings.
-
-- **Event Registration**: events registration, registration status tracking, and managing event capacities.
-
-- **Email Notifications**: Implement automated email notifications for event-related updates and reminders.
-
-- **Feedback and Rating System**: For users to provide feedback and ratings on events.
-
-- **Admin Panel**: Panel for managing users, events, and system settings.
-
-- **Reporting and Analytics**: Implement event attendance tracking and user engagement analytics.
-
-- **API Development**: Build RESTful APIs for frontend integration and external system interaction.
-
-## Getting Started
-
-### Prerequsites
-
-- 
--
-
-### Installation
-1. **Clone the repository** from the main branch.
-    ```bash
-    git clone https://github.com/francis450/UniEvents.git
-    ```
-2. Navigate to the project directory:
-
-    ```bash
-    cd UniEvents/server
-    ```
-3. To be continued....
-
-# Dj-Rest-Auth
-[![<iMerica>](https://circleci.com/gh/iMerica/dj-rest-auth.svg?style=svg)](https://app.circleci.com/pipelines/github/iMerica/dj-rest-auth)
+This Django application provides authentication endpoints using dj-rest-auth. Follow the steps below to set up and use these APIs.
 
 
-Drop-in API endpoints for handling authentication securely in Django Rest Framework. Works especially well 
-with SPAs (e.g., React, Vue, Angular), and Mobile applications. 
+## Run Locally
 
-## Requirements
-- Django 2, 3, or 4 (See Unit Test Coverage in CI)
-- Python 3
+Clone the project
 
-## Quick Setup
-
-Install package
-
-    pip install dj-rest-auth
-    
-Add `dj_rest_auth` app to INSTALLED_APPS in your django settings.py:
-
-```python
-INSTALLED_APPS = (
-    ...,
-    'rest_framework',
-    'rest_framework.authtoken',
-    ...,
-    'dj_rest_auth'
-)
-```
-    
-Add URL patterns
-
-```python
-urlpatterns = [
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-]
-```
-    
-
-(Optional) Use Http-Only cookies
-
-```python
-REST_AUTH = {
-    'USE_JWT': True,
-    'JWT_AUTH_COOKIE': 'jwt-auth',
-}
+```bash
+  git clone https://github.com/francis450/UniEvents.git
 ```
 
-### Testing
+Go to the project directory
 
-Install required modules with `pip install -r  dj_rest_auth/tests/requirements.pip`
+```bash
+  cd UniEvents
+  cd server
 
-To run the tests within a virtualenv, run `python runtests.py` from the repository directory.
-The easiest way to run test coverage is with [`coverage`](https://pypi.org/project/coverage/),
-which runs the tests against all supported Django installs. To run the test coverage 
-within a virtualenv, run `coverage run ./runtests.py` from the repository directory then run `coverage report`.
+```
 
-#### Tox
+Create and Activate a Virtual Environment
 
-Testing may also be done using [`tox`](https://pypi.org/project/tox/), which
-will run the tests against all supported combinations of Python and Django.
+```bash
+  python -m venv venv
+  source venv/bin/activate
+```
 
-Install tox, either globally or within a virtualenv, and then simply run `tox`
-from the repository directory. As there are many combinations, you may run them
-in [`parallel`](https://tox.readthedocs.io/en/latest/config.html#cmdoption-tox-p)
-using `tox --parallel`.
+Install Dependencies:
 
-The `tox.ini` includes an environment for testing code [`coverage`](https://pypi.org/project/coverage/)
-and you can run it and view this report with `tox -e coverage`.
+```bash
+  pip install -r requirements.txt
+```
 
-Linting may also be performed via [`flake8`](https://pypi.org/project/flake8/)
-by running `tox -e flake8`.
+Run Migrations:
 
-### Documentation
+```bash
+  python manage.py migrate
+```
 
-View the full documentation here: https://dj-rest-auth.readthedocs.io/en/latest/index.html
+Start the Development Server:
+
+```bash
+  python manage.py runserver
+```
 
 
-### Acknowledgements
+## API Reference
 
-This project began as a fork of `django-rest-auth`. Big thanks to everyone who contributed to that repo!
+#### Login
+
+```http
+  POST /dj-rest-auth/login/
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username (or email)` | `string` | **Required**. username or email |
+| `password`      | `string` | **Required**. Password |
+
+##### Returns token key
+
+#### Logout
+
+```http
+  POST /dj-rest-auth/logout/
+```
+
+#### Password Reset
+
+```http
+  POST /dj-rest-auth/password/reset/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**. Email |
+
+#### Password Reset Confirmation
+
+```http
+  POST /dj-rest-auth/password/reset/confirm/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `uid`      | `string` | **Required**. UID |
+| `token`      | `string` | **Required**. Token |
+| `new_password1`      | `string` | **Required**. New Password |
+| `new_password2`      | `string` | **Required**. Confirm Password |
+
+##### Note: uid and token are sent in an email after calling  ``` /dj-rest-auth/password/reset/. ```
+
+
+#### User Registration
+
+```http
+  POST /dj-rest-auth/registration/
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `username`      | `string` | **Required**. Username |
+| `email`      | `string` | **Required**. Email |
+| `password`      | `string` | **Required**. Password |
+
+
+## Documentation
+
+For more details, refer to the full documentation: [Documentation](https://dj-rest-auth.readthedocs.io/en/latest/index.html)
+
