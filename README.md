@@ -1,101 +1,59 @@
-# UniEvents: Streamlined Event Management for Universities
+# Inventory Management System
 
-## Overview
-UniEvents is a web-based application designed to facilitate the organization and management of events within universities. With a focus on rapid development and user-centric design, UniEvents offers a comprehensive solution for students, faculty, and event organizers to seamlessly plan, schedule, and attend events.
+This is an inventory management system developed using PHP and Bootstrap. It helps businesses keep track of their inventory, manage stock levels, and streamline their operations.
 
-## Key Features
-- **User Authentication**: Secure authentication mechanisms for students, faculty, and event organizers.
-- **Event Creation and Scheduling**: Easy-to-use interface for creating and scheduling events, specifying details such as date, time, location, and category.
-- **Registration Functionality**: Convenient registration process for users to sign up for events of interest.
-- **Calendar Integration**: Integration with popular calendar systems for synchronization and reminders.
-- **Automated Email Notifications**: Timely email notifications for event updates, registrations, and reminders.
-- **Feedback and Rating System**: Feedback mechanism for users to provide input and ratings on events.
-- **Responsive Design**: Responsive design ensures accessibility across devices.
-- **Iterative Development Approach**: Agile development methodology for rapid iterations and continuous improvement.
-## Getting Started
+## Features
 
-To get started with UniEvents, you  'll need to set up both the backend and frontend components. Please follow the instructions in the respective repositories:
+- User authentication: Secure login system for authorized access to the system.
+- Dashboard: Provides an overview of inventory statistics and key metrics.
+- Inventory management: Add, edit, and delete products from the inventory.
+- Stock management: Track stock levels, receive notifications for low stock items.
+- Reporting: Generate reports on inventory status, sales, and other relevant metrics.
 
-- [UniEvents Backend Repository](https://github.com/francis450/UniEvents/tree/main/server): Instructions to set up and run the backend server.
-- [UniEvents Frontend Repository](https://github.com/francis450/UniEvents/tree/main/client): Instructions to set up and run the frontend client.
+## Technologies Used
 
-## Branch Naming Convention
+- PHP: Server-side scripting language for backend development.
+- Bootstrap: Frontend framework for building responsive and mobile-first web applications.
+- MySQL: Relational database management system for storing inventory data.
+- HTML/CSS: Markup and styling for the user interface.
 
-To maintain consistency and organization in our repository, please follow the branch naming convention below:
+## Installation
 
-> Remember to regularly sync your branch to avoid conflicts
+1. Clone the repository to your local machine:
 
-- **Bugfix Branches**: For fixing bugs, use the following format:
-Example: `bugfix/harriet/fix-login-issue`
+```bash
+git clone https://github.com/your-username/inventory-management-system.git
+```
+2. Import the SQL file (database.sql) into your MySQL database to create the necessary tables and data.
 
-- **Feature Branches**: For adding new features, use the following format:
-Example: `feature/kevin/add-authentication`
+3. Configure the database connection in config.php file:
 
-- **Enhancement Branches**: For implementing enhancements or improvements, use the following format:
-Example: `enhancement/morgan/update-login-api`
+```bash
+define('DB_HOST', 'localhost');
+define('DB_USERNAME', 'your_username');
+define('DB_PASSWORD', 'your_password');
+define('DB_NAME', 'inventory_db');
+```
+4. Start a PHP server:
 
-## Modules Outline
+```bash
+php -S localhost:8000
+```
 
-### 1. User Authentication Module
-   - User registration
-   - Login/logout functionality
-   - Password reset
+5. Open your web browser and navigate to http://localhost:8000 to access the application.
 
-### 2. Event Creation and Management Module
-   - Event creation form
-   - Event editing and deletion
-   - Event visibility settings
+## Usage
+1. Login to the system using your credentials.
+2. Navigate through the dashboard and other sections to manage inventory, stocks, and generate reports.
+3. Add, edit, or delete products as needed.
+4. Keep track of stock levels and receive notifications for low stock items.
+5. Generate reports to analyze inventory status and sales performance.
 
-### 3. Event Registration Module
-   - Event registration form
-   - Registration status tracking
-   - Capacity management
+## Contributing
+Contributions are welcome! If you find any bugs or have suggestions for improvement, please open an issue or submit a pull request.
 
-### 4. Calendar Integration Module
-   - Integration with external calendar services
-   - Automated reminders
-
-### 5. Email Notification Module
-   - Automated email notifications
-   - Email template management
-
-### 6. Feedback and Rating Module
-   - Feedback submission form
-   - Rating system
-   - Feedback aggregation and reporting
-
-### 7. User Interface Module
-   - Frontend development
-   - Responsive design
-
-### 8. Administration Module
-   - User management
-   - Event management
-
-### 9. Reporting and Analytics Module
-   - Event attendance tracking
-   - User engagement analytics
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 
-## User Stories
-- **As a Student** I want to search for and register for upcoming events.
-- **As a faculty member**  I want to create and manage events for my classes.
-- **As an event organizer**  I want to schedule events, manage registrations, and send email notifications.
-
-## Development Approach
-- **Iterative Development**: Divide the project into small iterations, each delivering specific features and functionality.
-- **User Feedback**: Gather feedback from stakeholders throughout the development process to drive continuous improvement.
-- **Prototype Development**: Create prototypes early to visualize concepts and gather requirements.
-- **Cross-Functional Teams**: Form cross-functional teams to foster collaboration and knowledge sharing.
-- **Continuous Integration and Testing**: Implement automated testing and continuous integration pipelines to ensure quality and stability.
-- **Flexible Planning**: Adapt to changing requirements and priorities with a flexible approach to project planning.
-
-## Development Timeline
-- **Week 1:**
-- **Week 2:**
-- **Week 3:**
-- **Week 4:**
-- **Week 5:**
-
-## Conclusion
-UniEvents empowers universities with a versatile platform for efficient event management, fostering community engagement and collaboration. By embracing rapid development methodologies and user-centric design principles, UniEvents delivers a streamlined experience for all stakeholders involved in university events.
+Feel free to customize this template according to your project's specific requirements and add additional sections if needed.
