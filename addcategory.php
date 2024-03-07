@@ -11,16 +11,7 @@ if(isset($_POST['invoiceid'])){
         echo false;
     }
 }
-if(isset($_POST['declined'])){
-    $invoiceid = $_POST['declined'];
-    // echo $invoiceid;
-    $query = "UPDATE invoices SET approved = '-1' WHERE id = '$invoiceid'";
-    if(mysqli_query($con, $query)){
-        echo true;
-    }else{
-        echo false;
-    }
-}
+
 if(isset($_POST['productforstock'])){
     $productforstock = $_POST['productforstock'];
     $checkcategory = mysqli_query($con, "SELECT totalpieces FROM inventory WHERE brand = '$productforstock'");
