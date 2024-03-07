@@ -22,9 +22,9 @@ This is an inventory management system developed using PHP and Bootstrap. It hel
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/inventory-management-system.git
+git clone https://github.com/francis450/UniEvents.git
 ```
-2. Import the SQL file (database.sql) into your MySQL database to create the necessary tables and data.
+2. Import the SQL file (database.sql) into your MySQL database.
 
 3. Configure the database connection in config.php file:
 
