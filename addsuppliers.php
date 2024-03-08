@@ -159,6 +159,10 @@ if(isset($_POST['suppliername'])&&isset($_POST['supplieremail'])&&isset($_POST['
                   // window.location.href = 'closing-page.html';
                 }
             
+                // Add event listeners to reset the inactivity timer on user interaction
+                window.addEventListener('mousemove', resetInactivityTimer);
+                window.addEventListener('keydown', resetInactivityTimer);
+                window.addEventListener('click', resetInactivityTimer);
               </script>
               <!--
               <div class="col-md-5 d-flex align-items-stretch">
