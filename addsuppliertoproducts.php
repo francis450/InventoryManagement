@@ -350,7 +350,53 @@ pw_prompt({
                   <div class="card-body">
                     <h2>Products</h2>
                     <p><b>Note:</b> To edit quantities, click on the quantity you want to edit</p>
-                    
+                    <table class="table .table-striped" id="first">
+                                    <thead>
+                                        <tr>
+                                          
+                    						<th>Brand</th>
+                    						<th>Buying Price</th>
+                    						<th>Quantity</th>
+											<th>Retail Price</th>
+                    						<th>Best Price</th>
+											
+											<th>Profit</th>
+                    						<th>Edit</th>
+											<th>Delete</th>
+                    						<th>Submit</th>
+                    						
+                    					
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                               $resultt = mysqli_query($con,"select * from products"); 
+                                                while($row = mysqli_fetch_array($resultt)){
+													
+													$profitmargin = ((($row['spw']) - ($row['bp']))/$row['bp'])*100;
+                                                
+                                                echo "<tr>";
+                            					
+                            					echo '<td class="brandname">'.$row['brand'].'</td>';
+                            					echo '<td class="bp">'.number_format($row['bp'],2).'</td>';
+                            					echo '<td class="qt">'.$row['units'].'</td>';
+                            					echo '<td class="spr">'.$row['spr'].'</td>';
+                            					echo '<td class="spw">'.$row['spw'].'</td>';
+                            					$tax = $row['taxable'];
+                            					if($tax==1){ $taxable="taxable";}else{$taxable="not taxable";}
+												if($tax==1){ $taxableb="not taxable";}else{$taxableb="taxable";}
+												//echo '<td><button class="tax primary" value="'.$taxableb.'">'.number_format($profitmargin,2).' %<br>'.$taxable.'</br>(click here to make it '.$taxableb.')</button></td>';
+												echo '<td><button type="button" class="btn btn-dark btn-fw" onClick="MyWindow=window.open(\'addbrands2.php?brand='.$row['brand'].'\',\'MyWindow\',\'width=800,height=700\'); return false;">Add Suppliers </button></td>';
+												echo '<td><span class="editbtn">&#9998;</span></td>';
+												echo '<td><span style="color:red;font-size:1.5em;" class="delbtn">&#128465;<span></td>';
+                            				    echo '<td class="editcommit btn">&#x267B;</td>';
+                                                
+                                                echo "</tr>";
+                                                }
+                                                ?>
+                                        
+                                    </tbody>
+                                </table>
                          
 								<span class="hapa"></span>
                         
