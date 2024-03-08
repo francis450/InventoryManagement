@@ -38,7 +38,11 @@ $userdetails = mysqli_query($con,"SELECT * FROM users where username = '$userid'
     <link rel="stylesheet" href="assets/css/shared/style.css">
     <!-- endinject -->
     <!-- Layout styles -->
-   
+    <link rel="stylesheet" href="assets/css/demo_1/style.css">
+    <!-- End Layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery.dataTables.min.js"></script>
 	<style>
 	.pw_prompt {
     position:fixed;
